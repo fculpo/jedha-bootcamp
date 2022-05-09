@@ -45,7 +45,7 @@ module "eks" {
 
   eks_managed_node_groups = {
     for index, az in module.vpc.azs : az => {
-      instance_types    = ["t2.micro", "t2.small", "t3.micro", "t3.small"]
+      instance_types    = ["t2.small","t3.small"]
       capacity_type     = "SPOT"
       min_size          = 2
       max_size          = 4
