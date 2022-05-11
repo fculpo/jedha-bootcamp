@@ -6,7 +6,7 @@ metadata:
   labels:
     app: kuard
 spec:
-  replicas: 3
+  replicas: 4
   selector:
     matchLabels:
       app: kuard
@@ -16,7 +16,7 @@ spec:
         app: kuard
     spec:
       containers:
-        - image: gcr.io/kuar-demo/kuard-amd64:1
+        - image: fculpo/kuard:latest
           name: kuard
           ports:
             - containerPort: 8080

@@ -6,8 +6,7 @@ module "eks" {
   cluster_version = local.eks.version
 
   cluster_endpoint_private_access      = true
-  cluster_endpoint_public_access       = true #tfsec:ignore:aws-eks-no-public-cluster-access
-  cluster_endpoint_public_access_cidrs = []
+  cluster_endpoint_public_access       = true
 
   vpc_id     = module.vpc.vpc_id
   subnet_ids = concat(module.vpc.public_subnets, module.vpc.private_subnets)
@@ -47,9 +46,9 @@ module "eks" {
     for index, az in module.vpc.azs : az => {
       instance_types    = ["t2.small","t3.small"]
       capacity_type     = "SPOT"
-      min_size          = 2
-      max_size          = 4
-      desired_size      = 2
+      min_size          = 1
+      max_size          = 2
+      desired_size      = 1
       disk_size         = 50
       subnet_ids        = [module.vpc.private_subnets[index]]
       enable_monitoring = false
